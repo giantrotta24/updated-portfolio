@@ -234,7 +234,7 @@
                 });
                 $.ajax({
                     type: 'POST',
-                    url: "./contact.php",
+                    url: "../contact.php",
                     data: ({
                         'action': 'contact',
                         'form': form
