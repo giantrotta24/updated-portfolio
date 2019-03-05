@@ -883,3 +883,10 @@ footer .copyright p {
   text-align: center;
   color: #ddd;
 }
+
+#about {
+	transition: transform 0.3s ease-out;
+}
+.zap {
+	transform: scale(0, 2.5);
+}

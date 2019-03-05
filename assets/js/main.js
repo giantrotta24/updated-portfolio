@@ -1,11 +1,9 @@
 
-(function($) {
+(function ($) {
 
     "use strict";
 
-    jQuery(document).on("ready", function() {
-
-
+    jQuery(document).on("ready", function () {
 
         /*
          * -----------------------------------------------------------------
@@ -15,7 +13,7 @@
 
         var themeWindow = $(window);
         var pagebody = $('html, body');
-        themeWindow.on("load", function() {
+        themeWindow.on("load", function () {
 
             var preloader = jQuery('.preloader');
             var preloaderArea = jQuery('.preloader-area');
@@ -25,7 +23,7 @@
         });
 
         var anchor = $('a[href="#"]');
-        anchor.on("click", function() {
+        anchor.on("click", function () {
             e.preventDefault();
         });
 
@@ -40,7 +38,7 @@
 
         // Prevent console.log from generating errors in IE for the purposes of the demo
         if (!window.console) console = {
-            log: function() {}
+            log: function () { }
         };
 
         // The actual plugin
@@ -62,41 +60,41 @@
 
             var width1 = $(".prog1").data("progress");
             var progBar1 = $(".prog1");
-            skill.waypoint(function() {
+            skill.waypoint(function () {
                 progBar1.css({
                     "width": width1,
                     "transition": "2s ease-in"
                 });
             }, {
 
-                offset: width1
-            });
+                    offset: width1
+                });
 
 
             var width2 = $(".prog2").data("progress");
             var progBar2 = $(".prog2");
-            skill.waypoint(function() {
+            skill.waypoint(function () {
                 progBar2.css({
                     "width": width2,
                     "transition": "2s ease-in"
                 });
             }, {
 
-                offset: width2
-            });
+                    offset: width2
+                });
 
 
             var width3 = $(".prog3").data("progress");
             var progBar3 = $(".prog3");
-            skill.waypoint(function() {
+            skill.waypoint(function () {
                 progBar3.css({
                     "width": width3,
                     "transition": "2s ease-in"
                 });
             }, {
 
-                offset: width3
-            });
+                    offset: width3
+                });
 
 
             /*
@@ -109,14 +107,14 @@
 
             var serviceBtn = $(".service-btn");
 
-            serviceBtn.on("click", function() {
+            serviceBtn.on("click", function () {
                 $('html, body').animate({
                     scrollTop: ($("#portfolio").offset().top) - 60
                 }, 2000);
             });
             var hireBtn = $(".hire-btn");
 
-            hireBtn.on("click", function() {
+            hireBtn.on("click", function () {
                 $('html, body').animate({
                     scrollTop: ($("#contact").offset().top) - 60
                 }, 2000);
@@ -131,7 +129,7 @@
 
             var personal = $('#personal-detail .nav .nav-item');
 
-            personal.on("click", function(e) {
+            personal.on("click", function (e) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 $(this).tab('show');
@@ -147,15 +145,15 @@
 
             var animation1 = $('.animation');
 
-            animation1.waypoint(function() {
+            animation1.waypoint(function () {
                 var thisElement = $(this.element);
                 var animation = thisElement.attr('data-animation');
 
                 thisElement.css('opacity', '1');
                 thisElement.addClass("animated " + animation).delay(2000);
             }, {
-                offset: '75%',
-            });
+                    offset: '75%',
+                });
 
 
             /*
@@ -220,7 +218,7 @@
 
             var contactSubmit = $('#contact-submit');
 
-            contactSubmit.on('click', function(e) {
+            contactSubmit.on('click', function (e) {
                 e.preventDefault();
                 var name = $('#form-name').val();
                 var email = $('#form-email').val();
@@ -239,7 +237,7 @@
                         'action': 'contact',
                         'form': form
                     })
-                }).done(function(data) {
+                }).done(function (data) {
 
                     var conResult = $('#contact .result');
                     conResult.html(data);
@@ -320,13 +318,13 @@
 
         var scrollTopBtn = $("#scroll-top-area");
 
-        scrollTopBtn.on("click", function() {
+        scrollTopBtn.on("click", function () {
             pagebody.animate({
                 scrollTop: 0
             }, 2000);
         });
 
-        themeWindow.on("scroll", function() {
+        themeWindow.on("scroll", function () {
             var top = themeWindow.scrollTop();
             var header = $("header");
             var headerText = $("header nav ul li a");
@@ -356,6 +354,47 @@
             }
 
         });
+
+        /*
+        * -----------------------------------------------------------------
+        *-----------------------scroll magic-------------------------------
+        * -----------------------------------------------------------------
+        */
+
+        // Init ScrollMagic Controller
+        const scrollMagicController = new ScrollMagic.Controller();
+
+        // Create Animation for 0.5s
+        const tween = TweenMax.to('#animation', 0.5, {
+            rotation: 360
+        });
+
+        // Create the Scene and trigger when visible
+        const scene = new ScrollMagic.Scene({
+            triggerElement: '#scene',
+            offset: 150, /* offset the trigger 150px below #scene's top */
+            duration:200,
+        })
+            .setTween(tween)
+            .addTo(scrollMagicController);
+
+        // Add debug indicators fixed on right side
+        // scene.addIndicators();
+
+        // Create the Scene and trigger when visible
+        const scene2 = new ScrollMagic.Scene({
+            triggerElement: '#zap',
+            offset: 150, /* offset the trigger 150px below #scene's top */
+            duration:200,
+        })
+            .setClassToggle('#about', 'zap')
+            .addTo(scrollMagicController);
+
+        // Add debug indicators fixed on right side
+        // scene2.addIndicators();
+        
+
+
 
     });
 
