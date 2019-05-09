@@ -5,6 +5,7 @@
 
     jQuery(document).on("ready", function () {
 
+        
         /*
          * -----------------------------------------------------------------
          *---------------------------Preloader and Anchor Tag---------------
@@ -208,18 +209,9 @@
 
 
 
-            /*
-             * -----------------------------------------------------------------
-             *----------------------Contact form ajax---------------------------
-             * -----------------------------------------------------------------
-            */
+           
 
 
-
-            var frmvalidator = new Validator("contactform");
-            frmvalidator.addValidation("form-name", "req", "Please provide your name");
-            frmvalidator.addValidation("form-email", "req", "Please provide your email");
-            frmvalidator.addValidation("form-email", "email", "Please enter a valid email address");
 
             /*
              * -----------------------------------------------------------------
