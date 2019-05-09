@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="assets/css/animate.min.css">
     <!---title logo icon-->
     <link rel="shortcut icon" href="assets/images/favicon.png" />
+    <!--validator-->
+    <script src="gen_validatorv4.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -1211,23 +1213,23 @@
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <div class="contact-form">
-                            <form class="contact-form-area" action="/contact.php" method="post">
+                            <form class="contact-form-area" method="post" name="contactform" action="contact.php" method="post">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input type="text" name="name" placeholder="Name" id="form-name">
+                                        <input type="text" name="form-name" placeholder="Name" id="form-name">
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" name="email" placeholder="Email" id="form-email">
+                                        <input type="text" name="form-email" placeholder="Email" id="form-email">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <input type="text" name="subject" placeholder="Subject" id="form-subject">
+                                        <input type="text" name="form-subject" placeholder="Subject" id="form-subject">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <textarea placeholder="Type here" name="message" id="form-message"></textarea>
+                                        <textarea placeholder="Type here" name="form-subject" id="form-message"></textarea>
                                         <input type="submit" class="submit-btn btn-style1 clearfix" value="Submit"
                                             id="contact-submit">
                                         <div class="result"></div>
@@ -1257,6 +1259,7 @@
     <!--End Footer-->
 
     <!--javascript-->
+    
     <script src="assets/js/jquery.min.js "></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.slicknav.min.js "></script>

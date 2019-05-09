@@ -1,50 +1,42 @@
-<?php
+<?php 
+$errors = '';
+$myemail = 'giantrotta@me.com';//<-----Put Your email address here.
+if(empty($_POST['form'][0]['name'])  || 
+   empty($_POST['form'][0]['email']) || 
+   empty($_POST['form'][0]['subject']) || 
+   empty($_POST['form'][0]['message']))
+{
+    $errors .= "\n Error: all fields are required";
+}
 
-$sendTo = "giantrotta@me.com";//don't forget to change it
+$name = $_POST['form'][0]['name']; 
+$email_address = $_POST['form'][0]['email']; 
+$subject = $_POST['form'][0]['subject']; 
+$message = $_POST['form'][0]['message']; 
 
-$action = $_POST['action'];
+if (!preg_match(
+"/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i", 
+$email_address))
+{
+    $errors .= "\n Error: Invalid email address";
+}
 
-    $name = $_POST['form'][0]['name'];
-    $email = $_POST['form'][0]['email'];
-    $subject = $_POST['form'][0]['subject'];
-    $message = $_POST['form'][0]['message'];
+if( empty($errors))
+{
+	$to = $myemail; 
+	$email_subject = $subject;
+	$email_body = "You have received a new message. ".
+	" Here are the details:\n Name: $name \n Email: $email_address \n Message \n $message"; 
+	
+	$headers = "From: $myemail\n"; 
+	$headers .= "Reply-To: $email_address";
+	
+	$sent = mail($to,$email_subject,$email_body,$headers);
 
-  if ($name == "") {
-    echo "<p class=\"error\">Please fill your name</p>";
-        
-   }
-   else if ($email == "") {
-    echo "<p class=\"error\">Please fill your email</p>";
-        
-   }
-    else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      echo "<p class=\"error\">Invalid email format</p>";
-    }
-    else if ($subject == "") {
-    echo "<p class=\"error\">Please include a subject</p>";
-    }
-   else if ($message == "") {
-    echo "<p class=\"error\">Please include a message</p>";
-        
-   }
-   else if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-    echo "<p class=\"error\">Only letters and white space allowed in name</p>";
-    }
-   
-        else
-    {
-        $header = 'From: ' . $name . '<' . $email . ">\r\n" .
-        'Reply-To: ' . $email . "\r\n" .
-        'X-Mailer: PHP/' . phpversion();
-        mail($sendTo, $subject, $message, $header);
-        $sent = mail($sendTo, $subject, $message, $header);
-
-        if ($sent) {
-            echo "<p class=\"success\">Message sent succesfully.</p>";
-        } else {
-            echo "<p class=\"error\">There was problem while sending E-Mail.</p>";
-
-        }
-    }
-
+	if ($sent) {
+		echo "<p class=\"success\">Message sent succesfully.</p>";
+	} else {
+		echo "<p class=\"error\">There was problem while sending E-Mail.</p>";
+	}
+} 
 ?>

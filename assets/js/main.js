@@ -212,47 +212,20 @@
              * -----------------------------------------------------------------
              *----------------------Contact form ajax---------------------------
              * -----------------------------------------------------------------
-             */
+            */
 
 
 
-            var contactSubmit = $('#contact-submit');
-
-            contactSubmit.on('click', function (e) {
-                e.preventDefault();
-                var name = $('#form-name').val();
-                var email = $('#form-email').val();
-                var subject = $('#form-subject').val();
-                var message = $('#form-message').val();
-                var form = new Array({
-                    'name': name,
-                    'email': email,
-                    'subject': subject,
-                    'message': message
-                });
-                $.ajax({
-                    type: 'POST',
-                    url: "../contact.php",
-                    data: ({
-                        'action': 'contact',
-                        'form': form
-                    })
-                }).done(function (data) {
-
-                    var conResult = $('#contact .result');
-                    conResult.html(data);
-                    $(".contact-form-area")[0].reset();
-
-                });
-
-            });
-
+            var frmvalidator = new Validator("contactform");
+            frmvalidator.addValidation("form-name", "req", "Please provide your name");
+            frmvalidator.addValidation("form-email", "req", "Please provide your email");
+            frmvalidator.addValidation("form-email", "email", "Please enter a valid email address");
 
             /*
              * -----------------------------------------------------------------
              *-------------------------------Service Item-----------------------
              * -----------------------------------------------------------------
-             */
+            */
 
 
             var serviceItem = $("#service #owl-demo-service");
@@ -373,7 +346,7 @@
         const scene = new ScrollMagic.Scene({
             triggerElement: '#scene',
             offset: 150, /* offset the trigger 150px below #scene's top */
-            duration:200,
+            duration: 200,
         })
             .setTween(tween)
             .addTo(scrollMagicController);
@@ -385,14 +358,14 @@
         const scene2 = new ScrollMagic.Scene({
             triggerElement: '#zap',
             offset: 150, /* offset the trigger 150px below #scene's top */
-            duration:200,
+            duration: 200,
         })
             .setClassToggle('#about', 'zap')
             .addTo(scrollMagicController);
 
         // Add debug indicators fixed on right side
         // scene2.addIndicators();
-        
+
 
 
 
